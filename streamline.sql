@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/09/2025 às 01:32
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Tempo de geração: 08-Set-2025 às 16:24
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `categorias`
+-- Estrutura da tabela `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -33,16 +33,17 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `categorias`
+-- Extraindo dados da tabela `categorias`
 --
 
 INSERT INTO `categorias` (`id`, `nome`) VALUES
-(1, 'Cannabis');
+(1, 'Cannabis'),
+(2, 'Móveis');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `fornecedores`
+-- Estrutura da tabela `fornecedores`
 --
 
 CREATE TABLE `fornecedores` (
@@ -57,16 +58,17 @@ CREATE TABLE `fornecedores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `fornecedores`
+-- Extraindo dados da tabela `fornecedores`
 --
 
 INSERT INTO `fornecedores` (`id`, `razao_social`, `cnpj`, `email`, `telefone`, `senha`, `reset_token`, `reset_token_expire`) VALUES
-(6, 'Goteira', '49447734000102', 'iarafontes@usp.br', '11947010600', '$2y$10$bKNB0Gi0cOiit82IGld38uSbsfP9AghfDOMyxXKd4Wr2/EoYwvWrG', NULL, NULL);
+(6, 'Goteira', '49447734000102', 'iarafontes@usp.br', '11947010600', '$2y$10$bKNB0Gi0cOiit82IGld38uSbsfP9AghfDOMyxXKd4Wr2/EoYwvWrG', NULL, NULL),
+(7, 'Leroy Merlin', '11111111111111111', 'lippealmeida@gmail.com', '1111111222222', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `produtos`
+-- Estrutura da tabela `produtos`
 --
 
 CREATE TABLE `produtos` (
@@ -83,16 +85,18 @@ CREATE TABLE `produtos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `produtos`
+-- Extraindo dados da tabela `produtos`
 --
 
 INSERT INTO `produtos` (`id`, `nome`, `especificacao`, `quantidade_estoque`, `quantidade_minima`, `valor_compra`, `valor_venda`, `categoria_id`, `fornecedor_id`, `data_cadastro`) VALUES
-(2, 'Prensado de cinco', 'O prensado de cinco mais gostoso da região do goteira', 420, 24, 2.50, 5.00, 1, NULL, '2025-09-06 20:31:42');
+(1, 'Cadeira', 'Cadeira de madeira', 30, 10, '55.00', '125.00', NULL, NULL, '2025-09-08 13:43:05'),
+(2, 'Prensado de cinco', '', 100, 5, '2.50', '5.00', 1, 6, '2025-09-08 13:55:29'),
+(3, 'Pó de dez', 'Melhor pó da região', 123, 10, '2.45', '10.00', NULL, 6, '2025-09-08 14:11:25');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -104,71 +108,63 @@ CREATE TABLE `usuarios` (
   `quantidade_funcionarios` varchar(20) NOT NULL,
   `natureza_juridica` varchar(100) NOT NULL,
   `cnpj` varchar(18) NOT NULL,
-  `senha` varchar(255) NOT NULL,
-  `reset_token` varchar(255) DEFAULT NULL,
-  `reset_token_expire` datetime DEFAULT NULL
+  `senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Despejando dados para a tabela `usuarios`
+-- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome_empresa`, `email`, `telefone`, `ramo_atuacao`, `quantidade_funcionarios`, `natureza_juridica`, `cnpj`, `senha`, `reset_token`, `reset_token_expire`) VALUES
-(9, 'Relp!', 'relp123@outlook.com', '11-94031-4679', 'Atacado/Varejo', '1-5', 'LTDA', '49.447.734/0001-02', '12345678', NULL, NULL),
-(10, 'gaby', 'gabyhatsunemiku@gmail.com', '11-94031-4567', 'Atacado/Varejo', '11-20', 'LTDA', '49.447.734/0001-22', '123#abc', NULL, NULL),
-(11, 'ttt', 'ttt23@gmail.com', '121212121', 'Atacado/Varejo', '6-10', 'LTDA', '49.457.734/0001-02', '455667', NULL, NULL),
-(12, 'hihi', 'hihi123@gmail.com', '11-96767-5644', 'Atacado/Varejo', '11-20', 'ltda', '82281119000144', '$2y$10$6ofchys8ByzoWMEBTJXaSOHQtPl0Nw7LcGvCIB7eJCS4Jyu/soXFK', NULL, NULL),
-(13, 'paulo', 'paulo123@gmail.com', '11-96767-5655', 'Atacado/Varejo', '51+', 'ltda', '82281119000166', '$2y$10$6ToWHDKfamHSteoIKmBFpe1NnfB4L5TlCnMwP81TygJCC2Qiur/Iq', NULL, NULL),
-(14, 'test', 'test@gmail.com', '11111111111', 'Beleza/Estética', '1-5', 'LTDA', '49447734000102', '$2y$10$0i.tsG6H3okzw7vNYkHTJOiFhpQp074My3PwDWcEqjmW1uS997d3S', NULL, NULL),
-(15, 'cu', 'iarafontes@usp.br', '69', 'Beleza/Estética', '6-10', 'LTDA', '12345678901234', '$2y$10$mXM6WdKf8ti7rTgQBMXTo.YeDKYT9e1GI2HLxxh2Hw4BKgVFfIPxq', NULL, NULL);
+INSERT INTO `usuarios` (`id`, `nome_empresa`, `email`, `telefone`, `ramo_atuacao`, `quantidade_funcionarios`, `natureza_juridica`, `cnpj`, `senha`) VALUES
+(9, 'Relp!', 'relp123@outlook.com', '11-94031-4679', 'Atacado/Varejo', '1-5', 'LTDA', '49.447.734/0001-02', '12345678'),
+(10, 'gaby', 'gabyhatsunemiku@gmail.com', '11-94031-4567', 'Atacado/Varejo', '11-20', 'LTDA', '49.447.734/0001-22', '123#abc'),
+(11, 'ttt', 'ttt23@gmail.com', '121212121', 'Atacado/Varejo', '6-10', 'LTDA', '49.457.734/0001-02', '455667'),
+(12, 'back', 'back@gmail.com', '1111111111111', 'Beleza/Estética', '1-5', 'LTDA', '12345678901234', '$2y$10$WOQBLPKmFSDdrEjtJCS77eo.OAC93mBzZJSFzsn.hcgh6elGD.siK'),
+(13, 'teste', 'teste@gmail.com', '1111111111111', 'Higiene/Limpeza', '51+', 'LTDA', '12345678901234', '$2y$10$D060g11qOVt.miU5qa69ausfy8HlU2R1.47dM8ylF3uYnxxYeArei');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `categorias`
+-- Índices para tabela `categorias`
 --
 ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nome` (`nome`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `fornecedores`
+-- Índices para tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `cnpj` (`cnpj`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `produtos`
+-- Índices para tabela `produtos`
 --
 ALTER TABLE `produtos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_produtos_categorias` (`categoria_id`),
-  ADD KEY `fk_produtos_fornecedores` (`fornecedor_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `usuarios`
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
@@ -180,18 +176,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- Restrições para tabelas despejadas
---
-
---
--- Restrições para tabelas `produtos`
---
-ALTER TABLE `produtos`
-  ADD CONSTRAINT `fk_produtos_categorias` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_produtos_fornecedores` FOREIGN KEY (`fornecedor_id`) REFERENCES `fornecedores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
