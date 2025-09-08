@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($usuario) {
         // Gera um token de segurança aleatório e único.
         $token = bin2hex(random_bytes(50));
-        
+
         // Define a data de expiração para 1 hora a partir de agora.
         $expira = date("Y-m-d H:i:s", time() + 3600); // 3600 segundos = 1 hora
 
@@ -39,17 +39,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Inicia o processo de envio de e-mail.
         $mail = new PHPMailer(true);
+        $mail = new PHPMailer(true);
+        $mail->SMTPDebug = 2; // Adicione esta linha para ativar o log
 
         try {
-            // Configurações do servidor de e-mail (Mailtrap).
+            // Novas Configurações (Brevo)
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
+            $mail->Host = 'smtp-relay.brevo.com';
             $mail->SMTPAuth = true;
-            $mail->Username = '7d86070cbccf27'; // Seu Username Mailtrap
-            $mail->Password = '462bfcf21e70c7'; // Seu Password Mailtrap
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // 'tls' é obsoleto, use a constante.
-            $mail->Port = 2525;
-            $mail->CharSet = 'UTF-8'; // Garante a codificação correta de acentos e caracteres especiais.
+            $mail->Username = '9691c1001@smtp-brevo.com'; // O seu login Brevo
+            $mail->Password = 'g3BDXcCKG8zWtZRL'; // A sua senha/chave SMTP Brevo
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+            $mail->CharSet = 'UTF-8';
+
+            // Define o remetente (pode ser um e-mail de suporte)
+            $mail->setFrom('suporte@streamline.com', 'Streamline - Recuperação de Senha');
 
             // Define o remetente e o destinatário.
             $mail->setFrom('suporte@demomailtrap.co', 'Sistema de Login');
@@ -81,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             // Envia o e-mail.
             $mail->send();
-            
+
             // Define uma mensagem de sucesso para o usuário.
             $_SESSION['msg_recuperar'] = "Sucesso! Um link de redefinição foi enviado para o seu e-mail.";
 
