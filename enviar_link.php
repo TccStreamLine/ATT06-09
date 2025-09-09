@@ -54,10 +54,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $mail->CharSet = 'UTF-8';
 
             // Define o remetente (pode ser um e-mail de suporte)
-            $mail->setFrom('suporte@streamline.com', 'Streamline - Recuperação de Senha');
+            $mail->setFrom('tccstreamline@gmail.com', 'Streamline - Recuperação de Senha');
 
             // Define o remetente e o destinatário.
-            $mail->setFrom('suporte@demomailtrap.co', 'Sistema de Login');
+            $mail->setFrom('tccstreamline@gmail.com', 'Sistema de Login');
             $mail->addAddress($usuario['email']); // Usa o e-mail vindo do banco.
 
             // Conteúdo do e-mail.

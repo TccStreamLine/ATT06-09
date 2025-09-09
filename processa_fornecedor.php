@@ -78,12 +78,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->Port = 587;
                 $mail->CharSet = 'UTF-8';
 
-                $mail->setFrom('9691c1001@smtp-brevo.com', 'Streamline Sistema');
+                $mail->setFrom('tccstreamline@gmail.com', 'Streamline Sistema');
                 $mail->addAddress($email, $razao_social);
 
                 $mail->isHTML(true);
                 $mail->Subject = 'Bem-vindo! Crie sua senha de acesso';
-                $link = "http://localhost/seu_projeto/definir_senha_fornecedor.php?token=" . $token; // Lembre-se de ajustar 'seu_projeto'
+                $link = "http://localhost/ESQUECEUSENHA_LOGIN/definir_senha_fornecedor.php?token=" . $token; // Lembre-se de ajustar 'seu_projeto'
                 $mail->Body = "<h2>Olá, " . htmlspecialchars($razao_social) . "!</h2><p>Você foi cadastrado em nosso sistema. Para começar, por favor, crie sua senha de acesso clicando no link abaixo:</p><p><a href='$link'>Criar Minha Senha</a></p><p>Este link é válido por 24 horas.</p>";
 
                 $mail->send();
