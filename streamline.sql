@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Set-2025 às 16:24
+-- Tempo de geração: 11-Set-2025 às 17:47
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.0.25
 
@@ -108,19 +108,19 @@ CREATE TABLE `usuarios` (
   `quantidade_funcionarios` varchar(20) NOT NULL,
   `natureza_juridica` varchar(100) NOT NULL,
   `cnpj` varchar(18) NOT NULL,
-  `senha` varchar(255) NOT NULL
+  `senha` varchar(255) NOT NULL,
+  `reset_token` varchar(255) DEFAULT NULL,
+  `reset_token_expire` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome_empresa`, `email`, `telefone`, `ramo_atuacao`, `quantidade_funcionarios`, `natureza_juridica`, `cnpj`, `senha`) VALUES
-(9, 'Relp!', 'relp123@outlook.com', '11-94031-4679', 'Atacado/Varejo', '1-5', 'LTDA', '49.447.734/0001-02', '12345678'),
-(10, 'gaby', 'gabyhatsunemiku@gmail.com', '11-94031-4567', 'Atacado/Varejo', '11-20', 'LTDA', '49.447.734/0001-22', '123#abc'),
-(11, 'ttt', 'ttt23@gmail.com', '121212121', 'Atacado/Varejo', '6-10', 'LTDA', '49.457.734/0001-02', '455667'),
-(12, 'back', 'back@gmail.com', '1111111111111', 'Beleza/Estética', '1-5', 'LTDA', '12345678901234', '$2y$10$WOQBLPKmFSDdrEjtJCS77eo.OAC93mBzZJSFzsn.hcgh6elGD.siK'),
-(13, 'teste', 'teste@gmail.com', '1111111111111', 'Higiene/Limpeza', '51+', 'LTDA', '12345678901234', '$2y$10$D060g11qOVt.miU5qa69ausfy8HlU2R1.47dM8ylF3uYnxxYeArei');
+INSERT INTO `usuarios` (`id`, `nome_empresa`, `email`, `telefone`, `ramo_atuacao`, `quantidade_funcionarios`, `natureza_juridica`, `cnpj`, `senha`, `reset_token`, `reset_token_expire`) VALUES
+(12, 'back', 'back@gmail.com', '1111111111111', 'Beleza/Estética', '1-5', 'LTDA', '12345678901234', '$2y$10$WOQBLPKmFSDdrEjtJCS77eo.OAC93mBzZJSFzsn.hcgh6elGD.siK', NULL, NULL),
+(13, 'teste', 'teste@gmail.com', '1111111111111', 'Higiene/Limpeza', '51+', 'LTDA', '12345678901234', '$2y$10$D060g11qOVt.miU5qa69ausfy8HlU2R1.47dM8ylF3uYnxxYeArei', NULL, NULL),
+(14, 'paulo woods', 'lastzrr@gmail.com', '11947010600', 'Atacado/Varejo', '21-50', 'LTDA', '12345678901234', '$2y$10$vZQ6d0U5lC4.s1Q8OVKZWORbpdpJ2DaABdzLHBXp7jbKykoaPv1c.', '189a0f1e7d6da95e630b374134a16f6af1a96169f97875ab7d0ecf6305ab6b57c42191ecfa3402c63e3a79a8a3a4cffb86af', '2025-09-11 18:45:25');
 
 --
 -- Índices para tabelas despejadas
@@ -176,7 +176,7 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
