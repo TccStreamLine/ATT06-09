@@ -46,7 +46,7 @@ $nome_empresa = $_SESSION['nome_empresa'] ?? 'Empresa';
             <ul class="menu-list">
                 <li><a href="sistema.php" class="active"><i class="fas fa-home"></i> Início</a></li>
                 <li><a href="estoque.php"><i class="fas fa-box"></i> Estoque</a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
+                <li><a href="agenda.php"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
                 <li><a href="fornecedores.php"><i class="fas fa-truck"></i> Fornecimento</a></li>
                 <li><a href="#"><i class="fas fa-chart-bar"></i> Vendas</a></li>
                 <li><a href="#"><i class="fas fa-cash-register"></i> Caixa</a></li>
@@ -68,6 +68,10 @@ $nome_empresa = $_SESSION['nome_empresa'] ?? 'Empresa';
         <header class="main-header">
             <h2>Início</h2>
             <div class="user-profile">
+                <!-- CÓDIGO DO SINO INSERIDO AQUI -->
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
                 <span>Sua empresa</span>
                 <div class="avatar">
                     <i class="fas fa-user"></i>
@@ -117,7 +121,8 @@ $nome_empresa = $_SESSION['nome_empresa'] ?? 'Empresa';
             </div>
             <div class="plan-card">
                 <h4>Business+</h4>
-                <p>Acesso ao sistema de gerenciamento web + um aplicativo para CEOs focado na vizualição rápida de informações.</p>
+                <p>Acesso ao sistema de gerenciamento web + um aplicativo para CEOs focado na vizualição rápida de
+                    informações.</p>
                 <div class="price">R$74,90 <span>/ mês</span></div>
                 <form action="processa_plano.php" method="POST">
                     <input type="hidden" name="plano" value="business_plus">

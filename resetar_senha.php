@@ -58,7 +58,9 @@ if ($token_valido && $_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <title>Redefinir Senha</title>
-  <link rel="stylesheet" href="stylesenha.css">
+  <link rel="stylesheet" href="css/stylesenha.css">
+  <link rel="stylesheet" href="css/imagem.css">
+  <link rel="stylesheet" href="img/imagemtela.png">
 </head>
 <body>
   <div class="main-container">
