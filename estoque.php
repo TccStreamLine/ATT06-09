@@ -62,7 +62,6 @@ $nome_empresa = $_SESSION['nome_empresa'] ?? 'Empresa';
                 <li><a href="sistema.php"><i class="fas fa-home"></i> Início</a></li>
                 <li><a href="estoque.php" class="active"><i class="fas fa-box"></i> Estoque</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
-                <li><a href="categorias.php"><i class="fas fa-tags"></i> Categorias</a></li>
                 <li><a href="fornecedores.php"><i class="fas fa-truck"></i> Fornecimento</a></li>
                 <li><a href="#"><i class="fas fa-chart-bar"></i> Vendas</a></li>
                 <li><a href="#"><i class="fas fa-cash-register"></i> Caixa</a></li>
@@ -104,8 +103,18 @@ $nome_empresa = $_SESSION['nome_empresa'] ?? 'Empresa';
         </div>
 
         <div class="actions-container">
-            <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="Pesquisar..."></div>
-            <a href="#" class="btn-primary" id="btnCadastrarProduto"><i class="fas fa-plus"></i> Cadastrar Produto</a>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Pesquisar Produto...">
+            </div>
+
+            <div class="actions-buttons">
+                <a href="categorias.php" class="btn-secondary">Gerenciar Categorias</a>
+
+                <a href="produto_formulario.php" class="btn-primary">
+                    <i class="fas fa-plus"></i> Cadastrar Produto
+                </a>
+            </div>
         </div>
 
         <div class="table-container">
@@ -138,16 +147,7 @@ $nome_empresa = $_SESSION['nome_empresa'] ?? 'Empresa';
                                 <td>R$ <?= number_format((float)$produto['valor_venda'], 2, ',', '.') ?></td>
                                 <td><?= htmlspecialchars($produto['categoria_nome'] ?? 'N/A') ?></td>
                                 <td class="actions">
-                                    <a href="#" class="btn-action btn-edit"
-                                        data-id="<?= $produto['id'] ?>"
-                                        data-nome="<?= htmlspecialchars($produto['nome']) ?>"
-                                        data-especificacao="<?= htmlspecialchars($produto['especificacao']) ?>"
-                                        data-qtd_estoque="<?= $produto['quantidade_estoque'] ?>"
-                                        data-qtd_minima="<?= $produto['quantidade_minima'] ?>"
-                                        data-valor_compra="<?= $produto['valor_compra'] ?>"
-                                        data-valor_venda="<?= $produto['valor_venda'] ?>"
-                                        data-categoria_id="<?= $produto['categoria_id'] ?>"
-                                        data-fornecedor_id="<?= $produto['fornecedor_id'] ?>">
+                                    <a href="produto_formulario.php?id=<?= $produto['id'] ?>" class="btn-action btn-edit">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
 
@@ -162,80 +162,6 @@ $nome_empresa = $_SESSION['nome_empresa'] ?? 'Empresa';
             </table>
         </div>
     </main>
-
-    <div id="modalCadastro" class="modal-container">
-        <div class="modal">
-            <header class="modal-header">
-                <h3 id="modalTitle">Cadastrar Novo Produto</h3> <button class="close-btn" id="closeModalBtn">&times;</button>
-            </header>
-            <form action="processa_produto.php" method="POST" class="modal-form">
-                <input type="hidden" name="acao" id="formAcao" value="cadastrar">
-                <input type="hidden" name="produto_id" id="produto_id">
-
-                <div class="form-row">
-                    <div class="form-group full-width">
-                        <label for="nome">Nome do Produto*</label>
-                        <input type="text" id="nome" name="nome" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="quantidade_estoque">Qtd. em Estoque</label>
-                        <input type="number" id="quantidade_estoque" name="quantidade_estoque" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="quantidade_minima">Qtd. Mínima</label>
-                        <input type="number" id="quantidade_minima" name="quantidade_minima" value="5">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="valor_compra">Valor de Compra (R$)</label>
-                        <input type="text" id="valor_compra" name="valor_compra" placeholder="10,50">
-                    </div>
-                    <div class="form-group">
-                        <label for="valor_venda">Valor de Venda (R$)*</label>
-                        <input type="text" id="valor_venda" name="valor_venda" placeholder="25,00" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="categoria_id">Categoria</label>
-                        <select id="categoria_id" name="categoria_id">
-                            <option value="">Nenhuma</option>
-                            <?php foreach ($categorias as $categoria): ?>
-                                <option value="<?= $categoria['id'] ?>"><?= htmlspecialchars($categoria['nome']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="fornecedor_id">Fornecedor</label>
-                        <select id="fornecedor_id" name="fornecedor_id">
-                            <option value="">Nenhum</option>
-                            <?php foreach ($fornecedores as $fornecedor): ?>
-                                <option value="<?= $fornecedor['id'] ?>"><?= htmlspecialchars($fornecedor['razao_social']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group full-width">
-                        <label for="especificacao">Especificação / Descrição</label>
-                        <textarea id="especificacao" name="especificacao" rows="3"></textarea>
-                    </div>
-                </div>
-
-                <footer class="modal-footer">
-                    <button type="button" class="btn-secondary" id="cancelModalBtn">Cancelar</button>
-                    <button type="submit" class="btn-primary">Salvar Produto</button>
-                </footer>
-            </form>
-        </div>
-    </div>
 
     <script>
         // --- LÓGICA PARA ABRIR/FECHAR O MODAL (JÁ EXISTENTE) ---

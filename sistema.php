@@ -47,7 +47,6 @@ $nome_empresa = $_SESSION['nome_empresa'] ?? 'Empresa';
                 <li><a href="sistema.php" class="active"><i class="fas fa-home"></i> Início</a></li>
                 <li><a href="estoque.php"><i class="fas fa-box"></i> Estoque</a></li>
                 <li><a href="#"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
-                <li><a href="categorias.php"><i class="fas fa-tags"></i> Categorias</a></li>
                 <li><a href="fornecedores.php"><i class="fas fa-truck"></i> Fornecimento</a></li>
                 <li><a href="#"><i class="fas fa-chart-bar"></i> Vendas</a></li>
                 <li><a href="#"><i class="fas fa-cash-register"></i> Caixa</a></li>

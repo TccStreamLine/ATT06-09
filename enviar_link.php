@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             // ---- CORREÇÃO CRÍTICA AQUI ----
             // O remetente DEVE ser o e-mail validado na Brevo
-            $mail->setFrom('9691c1001@smtp-brevo.com', 'Streamline - Recuperação de Senha');
+            $mail->setFrom('tccstreamline@gmail.com', 'Streamline - Recuperação de Senha');
 
             // O destinatário é o e-mail do usuário que solicitou a recuperação
             $mail->addAddress($usuario['email']); 

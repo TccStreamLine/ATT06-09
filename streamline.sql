@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Set-2025 às 17:47
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.0.25
+-- Tempo de geração: 12/09/2025 às 04:06
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categorias`
+-- Estrutura para tabela `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -33,17 +33,17 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `categorias`
+-- Despejando dados para a tabela `categorias`
 --
 
 INSERT INTO `categorias` (`id`, `nome`) VALUES
 (1, 'Cannabis'),
-(2, 'Móveis');
+(4, 'Dry');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `fornecedores`
+-- Estrutura para tabela `fornecedores`
 --
 
 CREATE TABLE `fornecedores` (
@@ -58,21 +58,23 @@ CREATE TABLE `fornecedores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `fornecedores`
+-- Despejando dados para a tabela `fornecedores`
 --
 
 INSERT INTO `fornecedores` (`id`, `razao_social`, `cnpj`, `email`, `telefone`, `senha`, `reset_token`, `reset_token_expire`) VALUES
-(6, 'Goteira', '49447734000102', 'iarafontes@usp.br', '11947010600', '$2y$10$bKNB0Gi0cOiit82IGld38uSbsfP9AghfDOMyxXKd4Wr2/EoYwvWrG', NULL, NULL),
-(7, 'Leroy Merlin', '11111111111111111', 'lippealmeida@gmail.com', '1111111222222', NULL, NULL, NULL);
+(7, 'Leroy Merlin', '11111111111111111', 'lippealmeida@gmail.com', '1111111222222', NULL, NULL, NULL),
+(9, 'Goteira', '12345678901234', 'lastzrr@gmail.com', '11111111111', '$2y$10$.Oxsomkppx6gcAVgTMiQgOUkNLBkRl9mg6QUodx.mypJK7R2ne//O', NULL, NULL),
+(10, 'mulher mais linda do mundo', 'cu', 'iarafontes@usp.br', '69', NULL, '0b71492a56080f002a9cea093c77f1300d888552185247e5454abfdb057a0dcdb4f326bf81cd62aee4a6a1b4bef5f9c774e6', '2025-09-13 01:49:06');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
+-- Estrutura para tabela `produtos`
 --
 
 CREATE TABLE `produtos` (
   `id` int(11) NOT NULL,
+  `codigo_barras` varchar(255) DEFAULT NULL,
   `nome` varchar(255) NOT NULL,
   `especificacao` text DEFAULT NULL,
   `quantidade_estoque` int(11) NOT NULL DEFAULT 0,
@@ -85,18 +87,17 @@ CREATE TABLE `produtos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `produtos`
+-- Despejando dados para a tabela `produtos`
 --
 
-INSERT INTO `produtos` (`id`, `nome`, `especificacao`, `quantidade_estoque`, `quantidade_minima`, `valor_compra`, `valor_venda`, `categoria_id`, `fornecedor_id`, `data_cadastro`) VALUES
-(1, 'Cadeira', 'Cadeira de madeira', 30, 10, '55.00', '125.00', NULL, NULL, '2025-09-08 13:43:05'),
-(2, 'Prensado de cinco', '', 100, 5, '2.50', '5.00', 1, 6, '2025-09-08 13:55:29'),
-(3, 'Pó de dez', 'Melhor pó da região', 123, 10, '2.45', '10.00', NULL, 6, '2025-09-08 14:11:25');
+INSERT INTO `produtos` (`id`, `codigo_barras`, `nome`, `especificacao`, `quantidade_estoque`, `quantidade_minima`, `valor_compra`, `valor_venda`, `categoria_id`, `fornecedor_id`, `data_cadastro`) VALUES
+(3, NULL, 'Pó de dez', 'Melhor pó da região', 123, 10, 2.45, 10.00, NULL, 6, '2025-09-08 14:11:25'),
+(8, '111111111111', 'Prensado de cinco', 'Gostozin', 120, 50, 2.50, 5.00, 1, NULL, '2025-09-12 01:24:16');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura para tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -114,63 +115,64 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Despejando dados para a tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nome_empresa`, `email`, `telefone`, `ramo_atuacao`, `quantidade_funcionarios`, `natureza_juridica`, `cnpj`, `senha`, `reset_token`, `reset_token_expire`) VALUES
 (12, 'back', 'back@gmail.com', '1111111111111', 'Beleza/Estética', '1-5', 'LTDA', '12345678901234', '$2y$10$WOQBLPKmFSDdrEjtJCS77eo.OAC93mBzZJSFzsn.hcgh6elGD.siK', NULL, NULL),
 (13, 'teste', 'teste@gmail.com', '1111111111111', 'Higiene/Limpeza', '51+', 'LTDA', '12345678901234', '$2y$10$D060g11qOVt.miU5qa69ausfy8HlU2R1.47dM8ylF3uYnxxYeArei', NULL, NULL),
-(14, 'paulo woods', 'lastzrr@gmail.com', '11947010600', 'Atacado/Varejo', '21-50', 'LTDA', '12345678901234', '$2y$10$vZQ6d0U5lC4.s1Q8OVKZWORbpdpJ2DaABdzLHBXp7jbKykoaPv1c.', '189a0f1e7d6da95e630b374134a16f6af1a96169f97875ab7d0ecf6305ab6b57c42191ecfa3402c63e3a79a8a3a4cffb86af', '2025-09-11 18:45:25');
+(14, 'paulo woods', 'lastzrr@gmail.com', '11947010600', 'Atacado/Varejo', '21-50', 'LTDA', '12345678901234', '$2y$10$vZQ6d0U5lC4.s1Q8OVKZWORbpdpJ2DaABdzLHBXp7jbKykoaPv1c.', '1309d86ed5b6cfa91fbd88ed9591523e84e03f686477b51ba7fb6e0b13066d09cc436e33c4e0a0a61bb4d5e10563a3aa96f1', '2025-09-12 02:55:05');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `categorias`
+-- Índices de tabela `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `fornecedores`
+-- Índices de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `produtos`
+-- Índices de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `codigo_barras` (`codigo_barras`);
 
 --
--- Índices para tabela `usuarios`
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
