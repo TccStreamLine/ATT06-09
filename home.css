@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+body{
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: #ffffff;
+    background: linear-gradient(360deg,rgba(255, 255, 255, 1) 50%, rgba(241, 226, 255, 1) 50%);
+    
+}
+
+.box-login a{
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+    left: 83.5%;
+    bottom: 90%;
+    
+    position: absolute;/*por algum motivo quando coloca o position absolute os valores tão invertidos,
+    ou seja, left é right e bottom é top*/
+    
+}
+.box-login a:hover{
+    color: #380a81;
+}
+
+.box-fornecedor a{
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+    left: 71%;
+    bottom: 90%;
+    position: absolute;
+}
+.box-fornecedor a:hover{
+    color: #380a81;
+}
+
+.box-cadastro a{
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    padding: 10.5px;
+    left: 89%;
+    bottom: 90%;
+    position: absolute;
+    background-color: #380a81;
+    
+}
+.box-cadastro a:hover{
+    background-color: #380a81;
+}
+
+h1{
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    color: black;
+    position: absolute;
+    right: 88%;
+
+}
+h3{
+    font-size: 60px;
+    color: #380361;
+    position: absolute;
+    left: 8%;
+    top: 22%;
+}
+
+div {
+  height: 60vh; /* simulação de rolagem */
+  display: flex;
+}
+
+.Quem {
+  left: 45%;
+  top: 5%;
+  position: absolute;
+}
+
+.conteudo h2 {
+  left: 39%;
+  position: absolute;
+  color: #380361;
+  bottom: -157%;
+  font-size: 36px;
+}
+
+.conteudo p {
+  left: 36%;
+  bottom: -160%;
+  position: absolute;
+  color: #717171;
+}
+
+.botaoQ {
+  color: black;
+}
+
+
+
+
+
